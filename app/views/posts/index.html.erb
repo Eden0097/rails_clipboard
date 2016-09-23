@@ -1,7 +1,17 @@
-<h4>All Posts</h4>
+<%= render 'shared/content_title', title: 'All posts' %>
 
-<ul>
-  <% @posts.each do |post| %>
-    <li><%= link_to post.title, post_path(post) %></li>
-  <% end %>
-</ul>
+<% @posts.each do |post| %>
+  <div class='row'>
+    <div class='span8 well'>
+      <%= render post.categories %>
+      <h4><%= link_to post.title, post.url %></h4>
+      <p><%= post.description %></p>
+
+    <p>
+      <span class='quiet'>posted by</span> <%= post.creator.username %>
+      <small>at <%= post.created_at %></small>
+    </p>
+
+    </div>
+  </div>
+<% end %>
